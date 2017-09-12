@@ -1,7 +1,12 @@
 <?php require_once '../util/defineUtil.php'; ?>
 <?php require_once '../util/dbaccessUtil.php'; ?>
 <?php require_once '../util/scriptUtil.php'; ?>
+<?php 
 
+$hoge = $_GET['itemcode'];
+
+echo "カートに追加しました"
+?>
 <?php
 
 /* 
@@ -11,5 +16,5 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+echo top();
 echo LOGINOUT(); ?>

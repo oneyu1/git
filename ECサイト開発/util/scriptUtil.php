@@ -30,6 +30,12 @@ function logindec(){
         }
 }
 
+function top(){
+            ?>
+            <a href= " <?php echo "../app/top.php" ?>">トップに戻る</a>
+            <?php
+}
+ 
 /**
  * フォームの再入力時に、すでにセッションに対応した値があるときはその値を返却する
  * @param type $name formのname属性
@@ -49,6 +55,9 @@ function form_value($name){
  * @param type $name
  * @return type
  */
+
+//セッションに書き込んでPOSTに返すメソッド
+//
 function bind_p2s($name){
     if(!empty($_POST[$name])){
         $_SESSION[$name] = $_POST[$name];

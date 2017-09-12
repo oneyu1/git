@@ -23,6 +23,7 @@ and open the template in the editor.
 
         です。"; ?>
          <?php
+         echo "9/12 13:00 面談出発"
         /* このシステムの簡単な説明が記載されている。テキストは自由
           キーワード検索フォームが設置されている。検索の遷移先はsearchで、GETメソッド。未入力ならエラーを表示
          * 
@@ -30,6 +31,7 @@ and open the template in the editor.
         ?>
             <form action ="<?php echo SEARCH ?>" method="GET">
                 商品検索:<input type="text" name="query">
+                <input hidden="text" name="category_id" value="1">
                 <input type="submit">
 
                 <?php  

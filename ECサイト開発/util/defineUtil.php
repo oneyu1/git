@@ -10,6 +10,7 @@ const ADD = 'add.php';                  //ADD
 const BUY_CONFIRM = 'buy.confirm.php'; // BUY_CONFIRM
 const SEARCH = 'search.php';
 const REGISTRATION_CONFIRM = 'registration_confirm.php';
+const REGISTRATION_COMPLETE = 'registration_complete.php';
 
 const sqlID = "isshiki";               //sqlid
         

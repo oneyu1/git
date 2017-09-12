@@ -4,6 +4,30 @@
     
 <?php
 
+if(!$_POST['mode']=="RESULT"){
+    echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
+}else{
+    
+    session_start();
+    $name = $_SESSION['name'];
+    $pass = $_SESSION['pass'];
+    $mail =  $_SESSION['mail'];
+    $address = $_SESSION['address'];
+            
+    echo $result = insert($name,$pass,$mail,$address);
+    
+    if(!isset($result)){
+        ?>
+        名前:<?php echo $name;?><br>
+        パスワード:<?php echo $pass;?><br>
+        メールアドレス:<?php echo $mail;?><br>
+        住所:<?php echo $address; ?><br>
+
+        上記の内容で登録しました。
+        <?php
+    }else{
+    }
+}
 //insert()
 
 /* 
@@ -15,4 +39,4 @@
  * and open the template in the editor.
  */
 
-echo LOGINOUT(); ?>
+echo LOGINOUT();

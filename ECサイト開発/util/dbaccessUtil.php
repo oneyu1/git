@@ -34,8 +34,7 @@
     function insert($name,$pass,$mail,$address){
         $insert_db = connect2MySQL();
         
-        $insert_sql ="insert into user_t (name,password,mail,address,newDate)"
-                ."VALUES(:name,:pass,:mail,;address,:newDate)";
+        $insert_sql ="INSERT INTO user_t(name,password,mail,address,newDate)VALUES(:name,:pass,:mail,:address,:newDate)";
         
         $datetime= new DateTime();
         $date = $datetime->format('Y-m-d h:i:s');

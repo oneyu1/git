@@ -3,13 +3,14 @@
 <?php require_once '../util/scriptUtil.php'; ?>
 
 <?php
+session_start();
 
 $confirm_values = array(
     'name' => bind_p2s('name'),
     'pass' => bind_p2s('pass'),
     'mail' => bind_p2s('mail'),
     'address' => bind_p2s('address')
-    );
+);
 
 if(!in_array(null,$confirm_values,true)){
     ?>
