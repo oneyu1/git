@@ -1,7 +1,38 @@
 <?php require_once '../util/defineUtil.php'; ?>
 <?php require_once '../util/dbaccessUtil.php'; ?>
 <?php require_once '../util/scriptUtil.php'; ?>
+<?php require_once '../util/common.php';?>
 
+<?php
+    //9/14予定
+    //写真実装
+    //session_regenerate_id()
+    //sessionID()仕様把握。実装。
+    $total = NULL;
+    SESSION_START();
+    $item = array();
+    //Result/Hit　検索された結果。アロー演算子を用いる。
+    //保存するのはitemcode、表示するのはitemcodeを利用した商品名
+    //配列iにしてセッションに保存。
+    
+    $_SESSION['i'];
+    for($i=1;$i<=$_SESSION['i'];$i++){
+        echo $itemcode = $_SESSION['cart'][$i];
+        echo " ";
+        $url = "https://shopping.yahooapis.jp/ShoppingWebService/V1/itemLookup?appid=$appid&itemcode=$itemcode";
+        $xml = simplexml_load_file($url);
+        $item = $xml->Result->Hit;//メソッド化？
+        //↓エラー吐いている。
+        echo $_SESSION['Price'][$i]."円<br><br>";
+        foreach($item as $key){
+        ?><img src="<?php echo h($key->Image->Small); ?>"/><br><?php
+        }
+        $total = $total + $_SESSION['Price'][$i];
+    }
+    echo $total."円"; 
+    
+    ?>
+    <p><form action="buy_confirm.php"><input type="submit" value="購入する"></from></p>
 <?php
 
 /* 

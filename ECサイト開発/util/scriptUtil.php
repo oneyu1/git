@@ -57,7 +57,7 @@ function form_value($name){
  */
 
 //セッションに書き込んでPOSTに返すメソッド
-//
+//2度目に呼び出した時はセッションを開放する。
 function bind_p2s($name){
     if(!empty($_POST[$name])){
         $_SESSION[$name] = $_POST[$name];
@@ -66,4 +66,14 @@ function bind_p2s($name){
         $_SESSION[$name] = null;
         return null;
     }
+}
+
+function getitem(){
+    $item = array();
+    $itemcode = $_GET['itemcode'];
+    $url = "https://shopping.yahooapis.jp/ShoppingWebService/V1/itemLookup?appid=$appid&itemcode=$itemcode";
+    $xml = simplexml_load_file($url);
+    //Result/Hit　検索された結果。アロー演算子を用いる。
+    $item = $xml->Result->Hit;
+    //var_dumpで要素をチェック、帰ってきた値を見てアロー演算子でクラスを指定する。
 }

@@ -52,8 +52,7 @@ if ($query != "") {
         </form>
         
         <?php
-        var_dump($hits);
-        //$hitsの配列数は$urlにて受け取る。指定しなければデフォルトは20
+        //$hitsの配列数は$urlにて受け取る。指定しなければデフォルトは20。今回は10。
         foreach ($hits as $hit)  {
         ?>
         <?php //urlの飛ばし先をitemへ。商品IDをGETで渡す。 ?>

@@ -21,11 +21,10 @@ foreach ($item as $key){
         <p><?php echo h($key->Name);?></p>
         <p><img src="<?php echo h($key->Image->Small); ?>"/><?php echo h($key->Headline); ?></p>
         <p><?php echo "評価".h($key->Ratings->DetailRate); ?></p>
-        <?php //評価なければ無しと表示したい。 ?>
         <form action = "add.php" method = "GET">
-        <input type="hidden" name="itemcode" value="<?php echo $itemcode?>">
-        <input type="submit" value="カートに追加する">
-    </form><p>
+            <input type="hidden" name="itemcode" value="<?php echo $itemcode?>">
+            <input type="submit" value="カートに追加する">
+        </form><p>
 </div>
 <?php
     }
