@@ -15,26 +15,41 @@
     //保存するのはitemcode、表示するのはitemcodeを利用した商品名
     //配列iにしてセッションに保存。
     
-    $_SESSION['i'];
-    for($i=1;$i<=$_SESSION['i'];$i++){
-        echo $itemcode = $_SESSION['cart'][$i];
-        echo " ";
-        $url = "https://shopping.yahooapis.jp/ShoppingWebService/V1/itemLookup?appid=$appid&itemcode=$itemcode";
-        $xml = simplexml_load_file($url);
-        $item = $xml->Result->Hit;//メソッド化？
-        //↓エラー吐いている。
-        echo $_SESSION['Price'][$i]."円<br><br>";
-        foreach($item as $key){
-        ?><img src="<?php echo h($key->Image->Small); ?>"/><br><?php
-        }
-        $total = $total + $_SESSION['Price'][$i];
+    //削除IDが来た時に選択された商品をnullにする
+    if(isset($_POST["id"])){
+       $a = $_POST["id"];
+       $_SESSION['cart'][$a] = null;
     }
-    echo $total."円"; 
+    
+    if(isset($_SESSION['i'])){
+        for($i=1;$i<=$_SESSION['i'];$i++){
+            if(isset($_SESSION['cart'][$i])){
+                $itemcode = $_SESSION['cart'][$i];
+                echo " ";
+                $url = "https://shopping.yahooapis.jp/ShoppingWebService/V1/itemLookup?appid=$appid&itemcode=$itemcode";
+                $xml = simplexml_load_file($url);
+                $item = $xml->Result->Hit;//メソッド化？
+                echo $_SESSION['Name'][$i];
+                echo $_SESSION['Price'][$i]."円<br><br>";
+                foreach($item as $key){
+                    ?><img src="<?php echo h($key->Image->Small); ?>"/><br><?php
+                }
+            $total = $total + $_SESSION['Price'][$i];
+            ?><form action ="cart.php"method="POST">
+                <input type="hidden" name="id" value="<?php echo $i ?>">
+                <input type="submit" value="削除">
+            </form>
+            <?php
+        }
+    }
+        echo $total."円"; 
     
     ?>
-    <p><form action="buy_confirm.php"><input type="submit" value="購入する"></from></p>
+    <p><form action="buy_confirm.php" name="buy" method="POST"><input type="submit" value="購入する"></from></p>
 <?php
-
+    }else{
+        echo "カートになにもありません<br>";
+    }
 /* 
  * 「カートに追加」でクッキーやセッションに保存された登録情報が登録古い順に表示される
 商品の写真と名前(リンクつき)、金額を表示。
@@ -47,5 +62,5 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+echo top();
 echo LOGINOUT(); ?>

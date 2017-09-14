@@ -2,8 +2,8 @@
 <?php require_once '../util/dbaccessUtil.php'; ?>
 <?php require_once '../util/scriptUtil.php'; ?>
 
-<?php //入力まで完了 ?>
-
+<?php SESSION_START();//入力まで完了 ?>
+    
     <form  action="<?php echo REGISTRATION_CONFIRM ?>" method="POST">
         名前:
         <input type ="text" name="name" value="<?php echo form_value('name'); ?>">

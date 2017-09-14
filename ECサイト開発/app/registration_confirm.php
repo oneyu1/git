@@ -22,6 +22,7 @@ if(!in_array(null,$confirm_values,true)){
 
         上記の内容で登録します。よろしいですか？
 
+
         <form action="<?php echo REGISTRATION_COMPLETE ?>" method="POST">
             <input type="hidden" name="mode" value="RESULT">
             <input type="submit" name="yes" value="はい">
@@ -52,7 +53,6 @@ if(!in_array(null,$confirm_values,true)){
             }
         }
         ?>
-        <?php //データリターン ?> 
         <form action="<?php echo REGISTRATION ?>" method="POST">
             <input type="hidden" name="mode" value="REINPUT" >
             <input type="submit" name="no" value= "登録画面に戻る">

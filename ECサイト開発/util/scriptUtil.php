@@ -1,5 +1,6 @@
 <?php
 require_once '../util/defineUtil.php';
+require_once '../util/common.php';
 
 /* よく使うユーザー定義関数をまとめておく
 例えば、トップへのリンクを挿入する処理をまとめておけば、すべてのページでこのリンクを使用するときにそのユーザー定義関数を挿入するだけでよくなる
@@ -22,12 +23,20 @@ function LOGINOUT(){
     //ログインステートfalseの時に表示、trueの時ログアウト、買い物かご、ようこそ $nameさんを表示
 }
 
+
+
 function logindec(){
     if (isset($_POST["url"])) {  
             ?><a href=<?php echo $_POST['url']; ?>>元いたページへ戻る</a> <?php
         }else{
             ?><a href=<?php echo $_SERVER['HTTP_REFERER']; ?>>元いたページへ戻る</a> <?php
         }
+}
+
+function cart(){
+            ?>
+            <a href= " <?php echo "../app/cart.php" ?>">カート</a>
+            <?php
 }
 
 function top(){
@@ -76,4 +85,17 @@ function getitem(){
     //Result/Hit　検索された結果。アロー演算子を用いる。
     $item = $xml->Result->Hit;
     //var_dumpで要素をチェック、帰ってきた値を見てアロー演算子でクラスを指定する。
+}
+
+$total = null;
+
+function itemserch($i){
+                $itemcode = $_SESSION['cart'][$i];
+                echo " ";
+                $appid = "dj00aiZpPXNudVQ4eEtLUlZmUCZzPWNvbnN1bWVyc2VjcmV0Jng9ZjQ-";
+                $url = "https://shopping.yahooapis.jp/ShoppingWebService/V1/itemLookup?appid=$appid&itemcode=$itemcode";
+                $xml = simplexml_load_file($url);
+                $item = $xml->Result->Hit;//メソッド化？
+                echo $_SESSION['Name'][$i];
+                echo $_SESSION['Price'][$i]."円<br><br>";
 }

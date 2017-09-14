@@ -15,7 +15,8 @@
         function login($name,$password){
         $login_db = connect2MySQL();
         
-        $login_sql = "SELECT * FROM user_t WHERE name = :name AND password = :password";
+        
+        $login_sql = "SELECT userID FROM user_t WHERE name = :name AND password = :password";
         
         $login_query = $login_db->prepare($login_sql);
         
@@ -34,6 +35,7 @@
     function insert($name,$pass,$mail,$address){
         $insert_db = connect2MySQL();
         
+        //IDとパスワードの重複登録は考慮していない。もしするならば一旦nameでSELECTをかけてテーブルになければtrueのメソッドを構築する。
         $insert_sql ="INSERT INTO user_t(name,password,mail,address,newDate)VALUES(:name,:pass,:mail,:address,:newDate)";
         
         $datetime= new DateTime();

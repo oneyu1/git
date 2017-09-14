@@ -1,8 +1,8 @@
 <?php require_once '../util/defineUtil.php'; ?>
 <?php require_once '../util/dbaccessUtil.php'; ?>
 <?php require_once '../util/scriptUtil.php'; ?>
-
     <?php
+        session_start();
         if(empty($_COOKIE['Loginstate'])){
     ?>
     <form action="login.php" method="post">
@@ -11,6 +11,7 @@
         <input type="hidden" value="<?php echo $_SERVER['HTTP_REFERER'];?>" name="url">
         <input type="submit">
     </form>
+
         <?php
         //データベース接続
         //ID
@@ -21,19 +22,22 @@
         }
         
         if(isset($name) && isset($password)){
-            //　echo "動きました";
+            //.dbaccessUtil
             $login_profile = login($name,$password);
             if(empty($login_profile)){
-                echo "nullです";
+                echo "名前が存在しないかパスワードが間違っています";
             } else {
                 echo "ログインしました<br>";
+                $sessionID = session_regenerate_id();
+                //セッションがある
                 setcookie('Loginstate',true,time() + 3000);
+                setcookie($sessionID,time() + 3000);
+                //SESSIONをスタートさせる。
             }
         }
         
-         ?>
+        ?>
         <a href="<?php echo REGISTRATION ?>">新規登録</a>
-
         <?php
         //ログインページリターン判定
         logindec();
@@ -41,10 +45,12 @@
     }else{
         echo "ログアウトしました<br>";
         setcookie('Loginstate',"",time() - 4500);
+        //IDとパスワードのセッションを破棄
         
         ////ログインページリターン判定
         logindec();
     }
+    
 /* 
  * どのページからも遷移できる。ログインしているかいないかで処理が分岐する
 ログインしていない状態(各ページの「ログイン」というリンクから)で遷移してきた場合は、ユーザー名とパスワードを入力するフォームが表示される。また、「新規会員登録」というリンクも表示される。

@@ -6,6 +6,7 @@
 
 if(!$_POST['mode']=="RESULT"){
     echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
+    top();
 }else{
     
     session_start();
@@ -24,6 +25,7 @@ if(!$_POST['mode']=="RESULT"){
         住所:<?php echo $address; ?><br>
 
         上記の内容で登録しました。
+        <h1><a href="<?php echo TOP_PHP ?>" >トップに戻る</a></h1>
         <?php
     }else{
     }

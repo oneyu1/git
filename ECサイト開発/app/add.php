@@ -20,16 +20,18 @@
         }else{
            $_SESSION['i'] = ++$_SESSION['i'];
         }
-        echo $i = $_SESSION['i'];
         
-            $_SESSION['cart'][$i] = $_GET["itemcode"];
-            foreach ($item as $key){
-                ?>
-                <p><?php echo h($key->Name)."<br>";
-                //Priceをセッションへ。文字列なので扱い注意？var型に近いので問題無いとは思う。
-                $_SESSION['Price'][$i] = h($key->Price);?></p>
-                <?php
-            }
+        $i = $_SESSION['i'];
+        
+        $_SESSION['cart'][$i] = $_GET["itemcode"];
+        foreach ($item as $key){
+            ?>
+            <p><?php echo $_SESSION['Name'][$i] = h($key->Name);
+            echo "<br>";
+            //Priceをセッションへ。文字列なので扱い注意？var型に近いので問題無いとは思う。
+            echo $_SESSION['Price'][$i] = h($key->Price);?>円</p>
+            <?php
+        }
         echo "カートに追加しました<br>";
         ?>  <p><form action="cart.php"><input type="submit" value="カートを見る"></form></p>
 <?php

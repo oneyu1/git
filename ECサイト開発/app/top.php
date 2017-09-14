@@ -39,6 +39,7 @@ and open the template in the editor.
             </form>
             
         <?php 
+            echo cart();
             echo LOGINOUT();
         ?>
 
