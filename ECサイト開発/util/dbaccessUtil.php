@@ -16,7 +16,7 @@
         $login_db = connect2MySQL();
         
         
-        $login_sql = "SELECT userID FROM user_t WHERE name = :name AND password = :password";
+        $login_sql = "SELECT userID,name FROM user_t WHERE name = :name AND password = :password";
         
         $login_query = $login_db->prepare($login_sql);
         
@@ -55,6 +55,43 @@
             $insert_db = null;
             return $e->getMessage();
         }
+        $insert_db=null;
+        return null;
+    }
+
+    
+    function insert_buy($type){
+        $insert_db = connect2MySQL();
+        $datetime= new DateTime();
+        $date = $datetime->format('Y-m-d h:i:s');
+        for($i=1;$i<=$_SESSION['i'];$i++){
+        $insert_sql = "insert into buy_t(userID,itemCode,type,buyDate)VALUES";
+        $insert_sql .= "(:userID,:itemCode,1,:date);";
+        $insert_query = $insert_db->prepare($insert_sql);
+            $insert_query->bindValue(':userID',$_SESSION['userID']);
+            $insert_query->bindValue(':itemCode',$_SESSION["cart"][$i]);
+            $insert_query->bindValue(':date',$date);
+            try{
+                $insert_query->execute();
+            }catch (PDOException $e){
+                echo $e->getMessage();
+            }
+        }
+    }
+    
+    function outputuser(){
+        $db = connect2MySQL();
+        $sql = "select name,password,mail,address,total,newDate from user_t;";
+        $que = $db->prepare($sql);
+        try{
+        echo "test";
+        $que->execute();
+        
+        }catch (PDOException $e){
+            $insert_db = null;
+            return $e->getMessage();
+        }
+        return $que->fetchAll(PDO::FETCH_ASSOC);
         $insert_db=null;
         return null;
     }

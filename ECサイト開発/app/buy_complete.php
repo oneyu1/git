@@ -4,20 +4,18 @@
 <?php require_once '../util/common.php'; ?>
 
     <?php
+    
     //購入データを受け取り、データベースに記載。
     session_start();
-    if(isset($_COOKIE['Loginstate'])){
-        if(isset($_SESSION['i'])){
-            for($i=1;$i<=$_SESSION['i'];$i++){
-                if(isset($_SESSION['cart'][$i])){
-                    //scriptUtil
-                    itemserch($i);
-                    $total = $total + $_SESSION['Price'][$i];
-                }
-            }
-        }
+    $_SESSION['i'];
+    if(isset($_COOKIE['Loginstate']) && isset($_SESSION['i'])){
+        $total =& sessionroop($_SESSION['i']);
+        insert_buy($_POST['radio']);
+        echo "合計".$total.'円';
+        //sql buy_tに追加。$_SESSION['i']回そのまま回すのは重くなるので一括でinsert出来るようにする。
+        //buyID(AUTO) userID(user) itemCode(コード) type(発送方法) buyData(現在時刻)
     }
-    
+
     //insert_buy($userID,$itemCode,$type,$buyDate);
     
     

@@ -14,8 +14,12 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-
-        <?php echo "このサービスは、そんなフラストレーションを解消するために生まれた、<br>
+        
+        <?php //cokieでIDを持つ
+        //buy insert文がスマートじゃない
+        //購入データとか作れてない。
+        //
+        echo "このサービスは、そんなフラストレーションを解消するために生まれた、<br>
 
         『金銭取引が絶対に発生しない』<br>
         『いくらでも、どんなものでも購入できる(気分になれる)』<br>

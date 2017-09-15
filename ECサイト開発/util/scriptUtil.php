@@ -87,15 +87,26 @@ function getitem(){
     //var_dumpで要素をチェック、帰ってきた値を見てアロー演算子でクラスを指定する。
 }
 
-$total = null;
+
+function sessionroop($SNo){
+    $total = 0;
+    for($i=1;$i<=$SNo;$i++){
+        if(isset($SNo)){
+            itemserch($i);
+            $total = $total + $_SESSION['Price'][$i];
+        }
+    }
+    return $total;
+}
 
 function itemserch($i){
-                $itemcode = $_SESSION['cart'][$i];
-                echo " ";
-                $appid = "dj00aiZpPXNudVQ4eEtLUlZmUCZzPWNvbnN1bWVyc2VjcmV0Jng9ZjQ-";
-                $url = "https://shopping.yahooapis.jp/ShoppingWebService/V1/itemLookup?appid=$appid&itemcode=$itemcode";
-                $xml = simplexml_load_file($url);
-                $item = $xml->Result->Hit;//メソッド化？
-                echo $_SESSION['Name'][$i];
-                echo $_SESSION['Price'][$i]."円<br><br>";
+    $itemcode = $_SESSION['cart'][$i];
+    echo " ";
+    $appid = "dj00aiZpPXNudVQ4eEtLUlZmUCZzPWNvbnN1bWVyc2VjcmV0Jng9ZjQ-";
+    $url = "https://shopping.yahooapis.jp/ShoppingWebService/V1/itemLookup?appid=$appid&itemcode=$itemcode";
+    $xml = simplexml_load_file($url);
+    $item = $xml->Result->Hit;//メソッド化？
+    echo $_SESSION['Name'][$i];
+    echo $_SESSION['Price'][$i]."円<br><br>";
 }
+

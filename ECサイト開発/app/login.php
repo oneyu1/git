@@ -1,6 +1,7 @@
 <?php require_once '../util/defineUtil.php'; ?>
 <?php require_once '../util/dbaccessUtil.php'; ?>
 <?php require_once '../util/scriptUtil.php'; ?>
+<?php require_once '../util/common.php' ?>
     <?php
         session_start();
         if(empty($_COOKIE['Loginstate'])){
@@ -29,7 +30,10 @@
             } else {
                 echo "ログインしました<br>";
                 $sessionID = session_regenerate_id();
-                //セッションがある
+                foreach($login_profile as $key){
+                $_SESSION['userID'] = $key['userID'];
+                $_SESSION['name'] = $key['name'];
+                }
                 setcookie('Loginstate',true,time() + 3000);
                 setcookie($sessionID,time() + 3000);
                 //SESSIONをスタートさせる。

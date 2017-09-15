@@ -6,34 +6,25 @@
 <?php
 
 session_start();
-$total = 0;
 $item = array();
 
-if(isset($_COOKIE['Loginstate'])){
-    if(isset($_SESSION['i'])){
-        for($i=1;$i<=$_SESSION['i'];$i++){
-            if(isset($_SESSION['cart'][$i])){
-                //scriptUtil
-                itemserch($i);
-                $total = $total + $_SESSION['Price'][$i];
-            }
-        }
-        if(isset($total)){
-            echo "<br> 合計".$total."円<br>";
-            echo "<br>以上の内容で購入します";
+if(isset($_COOKIE['Loginstate']) && isset($_SESSION['i'])){
+    $total =& sessionroop($_SESSION['i']);
+    if(isset($total)){
+        echo "<br> 合計".$total."円<br>";
+        echo "<br>以上の内容で購入します";
 
-            echo "<br>発送方法<br>";
-            ?>
-            <form action="buy_complete.php" method="POST">
-                郵便:<input type="radio" name="radio" value="1" checked><br>
-                徒歩:<input type="radio" name="radio" value="2"><br>
-                <input type="submit" value="送信"><br>
-            </form>
-            <?php
+        echo "<br>発送方法<br>";
+        ?>
+        <form action="buy_complete.php" method="POST">
+            郵便:<input type="radio" name="radio" value="1" checked><br>
+            徒歩:<input type="radio" name="radio" value="2"><br>
+            <input type="submit" value="送信"><br>
+        </form>
+        <?php
         }else{
             echo "カートの中身がありません<br>";
         }
-    }
 }else{
     echo "ログインされていません<br>";
 }
