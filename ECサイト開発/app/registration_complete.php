@@ -15,7 +15,7 @@ if(!$_POST['mode']=="RESULT"){
     $mail =  $_SESSION['mail'];
     $address = $_SESSION['address'];
             
-    echo $result = insert($name,$pass,$mail,$address);
+    $result = insert($name,$pass,$mail,$address);
     
     if(!isset($result)){
         ?>
@@ -23,10 +23,15 @@ if(!$_POST['mode']=="RESULT"){
         パスワード:<?php echo $pass;?><br>
         メールアドレス:<?php echo $mail;?><br>
         住所:<?php echo $address; ?><br>
-
+        
         上記の内容で登録しました。
+
         <h1><a href="<?php echo TOP_PHP ?>" >トップに戻る</a></h1>
         <?php
+        $_SESSION['name'] = null;
+        $_SESSION['pass'] = null;
+        $_SESSION['mail'] = null;
+        $_SESSION['address'] = null;
     }else{
     }
 }

@@ -9,7 +9,7 @@ session_start();
 $item = array();
 
 if(isset($_COOKIE['Loginstate']) && isset($_SESSION['i'])){
-    $total =& sessionroop($_SESSION['i']);
+    $total = sessionroop($_SESSION['i']);
     if(isset($total)){
         echo "<br> 合計".$total."円<br>";
         echo "<br>以上の内容で購入します";

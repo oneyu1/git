@@ -110,3 +110,12 @@ function itemserch($i){
     echo $_SESSION['Price'][$i]."円<br><br>";
 }
 
+function itemcode_select($itemcode){
+    $appid = "dj00aiZpPXNudVQ4eEtLUlZmUCZzPWNvbnN1bWVyc2VjcmV0Jng9ZjQ-";
+    $url = "https://shopping.yahooapis.jp/ShoppingWebService/V1/itemLookup?appid=$appid&itemcode=$itemcode";
+    $xml = simplexml_load_file($url);
+    $item = $xml->Result->Hit;
+    foreach ($item as $key){
+        echo h($key->Name);
+    }
+}

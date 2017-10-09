@@ -28,15 +28,20 @@
             if(empty($login_profile)){
                 echo "名前が存在しないかパスワードが間違っています";
             } else {
-                echo "ログインしました<br>";
                 $sessionID = session_regenerate_id();
                 foreach($login_profile as $key){
-                $_SESSION['userID'] = $key['userID'];
-                $_SESSION['name'] = $key['name'];
+                    if($key["deleteFlg"] == 0){
+                        echo "ログインしました<br>";
+                        $_SESSION['userID'] = $key['userID'];
+                        $_SESSION['name'] = $key['name'];
+                        //SESSIONをスタートさせる。
+                        setcookie('Loginstate',true,time() + 3000);
+                        setcookie($sessionID,time() + 3000);
+                    }
+                    elseif($key["deleteFlg"] == 1){
+                        echo"削除されたuserIDです";
+                    }
                 }
-                setcookie('Loginstate',true,time() + 3000);
-                setcookie($sessionID,time() + 3000);
-                //SESSIONをスタートさせる。
             }
         }
         
@@ -49,9 +54,11 @@
     }else{
         echo "ログアウトしました<br>";
         setcookie('Loginstate',"",time() - 4500);
+        session_destroy();
         //IDとパスワードのセッションを破棄
         
         ////ログインページリターン判定
+        top();
         logindec();
     }
     

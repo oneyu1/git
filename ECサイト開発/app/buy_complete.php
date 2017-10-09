@@ -9,9 +9,14 @@
     session_start();
     $_SESSION['i'];
     if(isset($_COOKIE['Loginstate']) && isset($_SESSION['i'])){
-        $total =& sessionroop($_SESSION['i']);
+        $total = sessionroop($_SESSION['i']);
         insert_buy($_POST['radio']);
+        total($total);
         echo "合計".$total.'円';
+        
+        $_session["cart"][0] = null;
+        $_SESSION['i'] = null;
+        
         //sql buy_tに追加。$_SESSION['i']回そのまま回すのは重くなるので一括でinsert出来るようにする。
         //buyID(AUTO) userID(user) itemCode(コード) type(発送方法) buyData(現在時刻)
     }
@@ -27,5 +32,5 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+echo top();
 echo LOGINOUT(); ?>

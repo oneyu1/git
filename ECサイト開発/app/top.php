@@ -27,6 +27,7 @@ and open the template in the editor.
 
         です。"; ?>
          <?php
+         session_start();
         /* このシステムの簡単な説明が記載されている。テキストは自由
           キーワード検索フォームが設置されている。検索の遷移先はsearchで、GETメソッド。未入力ならエラーを表示
          * フォームの再送信が必要なページは設定が必要
@@ -41,8 +42,11 @@ and open the template in the editor.
                 <?php  
                 //未入力の時エラー表示 ?>
             </form>
-            
-        <?php 
+            <?php
+            if(isset($_SESSION['name'])){
+                    ?><a href= " <?php echo "../app/my_data.php" ?>">マイデータ</a><?php
+            }
+  
             echo cart();
             echo LOGINOUT();
         ?>
