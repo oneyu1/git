@@ -1,5 +1,6 @@
 <?php
- /*Client ID：
+
+/*Client ID：
 dj00aiZpPXNudVQ4eEtLUlZmUCZzPWNvbnN1bWVyc2VjcmV0Jng9ZjQ-
 シークレット：
 kKVc1x27RVzozlxzBUJLvRFOM0IcKxtkghGu5sOl*/

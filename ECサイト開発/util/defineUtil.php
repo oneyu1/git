@@ -1,10 +1,11 @@
 <?php
+
 //define定義 30分
 
-const ROOT_URL ='http://localhost/kagoyume/top.php'; //topディレクトリへのURL
-const TOP_PHP ='top.php';               //top.php
+const ROOT_URL = 'http://localhost/kagoyume/top.php'; //topディレクトリへのURL
+const TOP_PHP = 'top.php';               //top.php
 const LOGIN = "login.php";              //ログインページへ飛ばす
-const LOGOUT ='logout.php';
+const LOGOUT = 'logout.php';
 const REGISTRATION = "registration.php";
 const ADD = 'add.php';                  //ADD
 const BUY_CONFIRM = 'buy.confirm.php'; // BUY_CONFIRM
