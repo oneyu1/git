@@ -21,12 +21,16 @@ if (empty($_GET['query'])) {
         $query4url = rawurlencode($query);
         $sort4url = rawurlencode($sort);
         //appid=アプリケーショーンID query=検索内容
-        
+
         $url = "http://shopping.yahooapis.jp/ShoppingWebService/V1/itemSearch?appid=$appid&query=$query4url&category_id=$category_id&sort=$sort4url&hits=10";
-        $xml = simplexml_load_file($url);
+        try {
+            $xml = simplexml_load_file($url);
+        }catch(Exception $e){
+        }
         if ($xml["totalResultsReturned"] != 0) {//検索件数が0件でない場合,変数$hitsに検索結果を格納します。
             $hits = $xml->Result->Hit;
         }
+            
     }
     ?>
     <html>
@@ -72,5 +76,4 @@ if (empty($_GET['query'])) {
 logindec();
 top();
 echo LOGINOUT();
-
 ?>

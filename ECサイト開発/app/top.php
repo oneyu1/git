@@ -22,8 +22,9 @@ and open the template in the editor.
         『いくらでも、どんなものでも購入できる(気分になれる)』<br>
         『ECサイト』<br>
 
-        です。";
-        echo "";
+        です。<br>";
+        
+        echo "スキル確認用のデモとして作成されています。<br>";
         ?>
         <?php
         session_start();

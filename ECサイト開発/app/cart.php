@@ -4,10 +4,6 @@
 <?php require_once '../util/common.php'; ?>
 
 <?php
-//9/14予定
-//写真実装
-//session_regenerate_id()
-//sessionID()仕様把握。実装。
 SESSION_START();
 $total = NULL;
 $item = array();
@@ -18,6 +14,18 @@ $item = array();
 if (isset($_POST["id"])) {
     $a = $_POST["id"];
     $_SESSION['cart'][$a] = null;
+    //スワップ処理
+    if ($a = $_SESSION["i"] == false) {
+        while ($a < $_SESSION["i"]) {
+            echo $_SESSION['cart'][$a] = $_SESSION["cart"][$a++];
+        }
+        $_SESSION["i"] = $_SESSION["i"] --;
+    }
+    //SESSION['i']まである
+    //○盤目削除
+    //while $a < session["i"]
+    ///session["cart"]["a++"]をsession["cart"]["a"]に
+    //処理が完了したらsession["i"]を-1
 }
 
 if (isset($_SESSION['i'])) {
