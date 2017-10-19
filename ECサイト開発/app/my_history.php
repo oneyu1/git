@@ -7,6 +7,7 @@
 
 session_start();
 echo $_SESSION["userID"];
+//購入履歴をデータベースより取得。各種データを表示。
 $result = buyhistory();
 if (isset($result)) {
     foreach ($result as $value => $key) {
@@ -28,6 +29,7 @@ logindec();
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+top();
 echo LOGINOUT();
+
 ?>

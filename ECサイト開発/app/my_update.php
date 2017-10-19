@@ -26,6 +26,6 @@ echo "変更する項目に入力してください"
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+top();
 echo LOGINOUT();
 ?>

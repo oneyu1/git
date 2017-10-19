@@ -6,6 +6,7 @@
 echo "本当に削除しますか？";
 session_start();
 $result = outputuser();
+//データベースより取得した現在のデータを表示。
 //var_dump($result);
 if (isset($result)) {
     foreach ($result as $value => $key) {
@@ -16,11 +17,6 @@ if (isset($result)) {
         echo "トータル:" . $key['total'] . "<br>";
         echo "日付:" . $key['newDate'];
         echo "<br>";
-        ?>
-        <a href=<?php echo "my_history.php"; ?>>購入履歴</a>
-        <a href=<?php echo "my_update.php"; ?>>登録情報の更新</a>
-        <a href=<?php echo "my_delete.php"; ?>>アカウント削除</a>
-        <?php
     }
 }
 ?>
@@ -34,6 +30,6 @@ logindec();
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+top();
 echo LOGINOUT();
 ?>

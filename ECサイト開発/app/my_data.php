@@ -8,6 +8,7 @@ $result = outputuser();
 //var_dump($result);
 if (isset($result)) {
     foreach ($result as $value => $key) {
+        //データベースより取得したデータの表示。
         echo "名前:" . $_SESSION["UserName"] = $key['name'];
         echo "<br>";
         echo "password:" . $_SESSION["UserPass"] = $key['password'];
@@ -20,6 +21,7 @@ if (isset($result)) {
         echo "<br>";
         echo "日付:" . $key['newDate'];
         echo "<br>";
+        //各種処理ページへ飛ぶ。
         ?>
         <a href=<?php echo "my_history.php"; ?>>購入履歴</a>
         <a href=<?php echo "my_update.php"; ?>>登録情報の更新</a>
@@ -35,6 +37,6 @@ if (isset($result)) {
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+top();
 echo LOGINOUT();
 ?>

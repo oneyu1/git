@@ -14,6 +14,7 @@
     <input type="submit" name="送信">
 </form>
 <?php
+
 //デリートフラグ実装する必要アリ？　デフォルト値でいい？
 /*
  * loginからのみ遷移
@@ -30,5 +31,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+top();
 echo LOGINOUT();
+

@@ -94,6 +94,7 @@ function sessionroop($SNo) {
     return $total;
 }
 
+//SESSIONに格納されている['cart']['i']配列を取り出す。
 function itemserch($i) {
     $itemcode = $_SESSION['cart'][$i];
     echo " ";

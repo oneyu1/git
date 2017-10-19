@@ -8,6 +8,8 @@ session_start();
 $item = array();
 
 if (isset($_COOKIE['Loginstate']) && isset($_SESSION['i'])) {
+    //sessionroop()は$_SESSION['i']に格納されているカートのアイテム数分、アイテムを表示させる関数
+    //returnでアイテムの価格を合算した総合計$totalを返す。
     $total = sessionroop($_SESSION['i']);
     if (isset($total)) {
         echo "<br> 合計" . $total . "円<br>";
@@ -24,7 +26,7 @@ if (isset($_COOKIE['Loginstate']) && isset($_SESSION['i'])) {
     } else {
         echo "カートの中身がありません<br>";
     }
-} else {
+} elseif(empty($_COOKIE['Loginstate'])) {
     echo "ログインされていません<br>";
 }
 /* カートに追加順で商品の名前(リンクなし)、金額が表示される

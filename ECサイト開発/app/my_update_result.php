@@ -15,9 +15,6 @@ if (isset($name) && isset($pass) && isset($mail) && isset($address)) {
 }
 
 echo "変更完了";
-top();
-
-
 
 /*
  * IDなどを受け取り、DBを更新。
@@ -26,6 +23,6 @@ top();
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+top();
 echo LOGINOUT();
 ?>

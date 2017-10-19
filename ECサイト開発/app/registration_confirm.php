@@ -22,7 +22,6 @@ if (!in_array(null, $confirm_values, true)) {
 
     上記の内容で登録します。よろしいですか？
 
-
     <form action="<?php echo REGISTRATION_COMPLETE ?>" method="POST">
         <input type="hidden" name="mode" value="RESULT">
         <input type="submit" name="yes" value="はい">
@@ -59,7 +58,6 @@ if (!in_array(null, $confirm_values, true)) {
     <?php
 }
 
-
 /*
  * フォームで入力された文字や選択を表示し、「上記の内容で登録いたします。よろしいですか？」と表示。 「はい」でregistration_complete「いいえ」でregistrationに値を保持したまま(戻った時にフォーム入力済みになっている)遷移
   もし入力が不足していた場合はどの項目のデータが不足しているのかを表示。insertに値を保持したまま遷移するリンクを表示
@@ -67,6 +65,7 @@ if (!in_array(null, $confirm_values, true)) {
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+top();
 echo LOGINOUT();
+
 ?>

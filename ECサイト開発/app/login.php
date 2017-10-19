@@ -4,7 +4,9 @@
 <?php require_once '../util/common.php' ?>
 <?php
 session_start();
+//クッキーでログインしているかどうか判定。
 if (empty($_COOKIE['Loginstate'])) {
+    //ログインしていない場合、このifを通す。nameとpassを入力しログインする。データベースに存在する場合、ログイン。
     ?>
     <form action="login.php" method="post">
         ユーザー名:<input type="text" name="name"><br>
@@ -19,7 +21,6 @@ if (empty($_COOKIE['Loginstate'])) {
     if (isset($_POST['name']) && isset($_POST['pass'])) {
         $name = $_POST['name'];
         $password = $_POST['pass'];
-        //デリートフラグ1の時の判定 後日実装
     }
 
     if (isset($name) && isset($password)) {
@@ -28,16 +29,20 @@ if (empty($_COOKIE['Loginstate'])) {
         if (empty($login_profile)) {
             echo "名前が存在しないかパスワードが間違っています";
         } else {
+            //セッションIDを現在のものと置き換え、ログイン。それまで保持していたセッションはキープする。
             $sessionID = session_regenerate_id();
             foreach ($login_profile as $key) {
                 if ($key["deleteFlg"] == 0) {
+                    //デリートフラグが立っていないアカウントであった場合
+                    //セッションにIDと名前を保存しクッキーをスタート。
                     echo "ログインしました<br>";
                     $_SESSION['userID'] = $key['userID'];
                     $_SESSION['name'] = $key['name'];
-                    //SESSIONをスタートさせる。
+                    //Scocckieをスタートさせる。
                     setcookie('Loginstate', true, time() + 3000);
                     setcookie($sessionID, time() + 3000);
                 } elseif ($key["deleteFlg"] == 1) {
+                    //デリートフラグが1で削除されているアカウントの場合
                     echo"削除されたuserIDです";
                 }
             }
@@ -50,11 +55,10 @@ if (empty($_COOKIE['Loginstate'])) {
     logindec();
     //ログインしたときにこのページに戻すので戻れるように。
 } else {
+    //ログアウト処理。クッキーとセッションを破棄する。
     echo "ログアウトしました<br>";
     setcookie('Loginstate', "", time() - 4500);
     session_destroy();
-    //IDとパスワードのセッションを破棄
-    ////ログインページリターン判定
     top();
     logindec();
 }

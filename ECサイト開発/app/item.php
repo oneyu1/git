@@ -8,7 +8,8 @@
 
 $item = array();
 $itemcode = $_GET['itemcode'];
-$url = "https://shopping.yahooapis.jp/ShoppingWebService/V1/itemLookup?appid=$appid&itemcode=$itemcode";
+//PHP5.6だとSSL承認が通らない為、PHP7を使用する。
+$url = "https://shopping.yahooapis.jp/ShoppingWebService/V1/itemLookup?appid=dj00aiZpPUxXNEk3SFZLc05ZQyZzPWNvbnN1bWVyc2VjcmV0Jng9YmY-&itemcode=$itemcode";
 $xml = simplexml_load_file($url);
 //Result/Hit　検索された結果。アロー演算子を用いる。
 $item = $xml->Result->Hit;
@@ -40,3 +41,4 @@ foreach ($item as $key) {
  */
 
 echo LOGINOUT();
+top();
