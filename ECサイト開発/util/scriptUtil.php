@@ -11,13 +11,9 @@ require_once '../util/common.php';
 
 function LOGINOUT() {
     if (empty($_COOKIE['Loginstate'])) {
-        ?> <form action="login.php" method="POST">
-            <input type ="hidden" name ="trans" value ="<?php echo$transition ?>"> 
-            <a href=login.php >ログイン</a>
-        </form>
-        <?php
+        ?> <a href=login.php style="color:#ffffff;text-decoration:none">ログイン</a> <?php
     } else {
-        return "<a href='" . LOGIN . "'>ログアウト</a>";
+        ?> <a href=login.php style="color:#ffffff;text-decoration:none">ログアウト</a> <?php
     }
     //ログインステートfalseの時に表示、trueの時ログアウト、買い物かご、ようこそ $nameさんを表示
 }
@@ -32,7 +28,7 @@ function logindec() {
 
 function cart() {
     ?>
-    <a href= " <?php echo "../app/cart.php" ?>">カート</a>
+    <a href= " <?php echo "../app/cart.php" ?>" style="color:#ffffff;text-decoration:none">カート</a>
     <?php
 }
 
@@ -114,4 +110,8 @@ function itemcode_select($itemcode) {
     foreach ($item as $key) {
         echo h($key->Name);
     }
+}
+
+function kagoyume(){
+    ?><a href=top.php style="color:#ffffff;text-decoration:none">かごゆめ　スキル確認用ECサイト</a> <?php
 }

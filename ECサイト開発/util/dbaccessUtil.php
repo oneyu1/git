@@ -111,8 +111,7 @@ function outputuser() {
         $que = null;
         return null;
     } else {
-        echo "でばっぐなう";
-        top();
+        echo "ログアウトされています。";
     }
 }
 

@@ -1,0 +1,80 @@
+html, body{
+    margin: 0;         /* 余白の削除 */
+    padding: 0;        /* 余白の削除 */
+    width:100%;
+    height:100%;
+}
+div#header-fixed
+{
+    position: fixed;            /* ヘッダーの固定 */
+    top: 0px;                   /* 位置(上0px) */
+    left: 0px;                  /* 位置(右0px) */
+    height: 40px;              /* 縦幅140px */
+    width: 100%;                /* 横幅100%　*/
+}
+
+
+div#header-bk { 
+    background-color:#444;     /* 背景色(黒) */
+    padding:10px 0 20px;       /* 上10px、下20pxをあける */
+    height:40px;              /* 縦の高さ110px */
+    width:100%;                /* 横の幅を100% */
+}
+
+
+div#header { 
+    /* border: 5px solid #fff;    /* 表示領域を白枠で囲う */
+    /* height: 100%;              /* 縦の表示領域はheader-bkと同じ */
+    /*width: 95%;              /* 横の幅970px */
+    /* margin: auto;              /* 中央揃え */
+
+    color: #ffffff;
+    font-size: x-large;
+
+}
+
+div#header-util{
+    position: absolute;
+    display: inline;
+    top: 10px;
+    right: 30px;
+    color:#ffffff;
+    font-style:normal;
+    text-decoration:underline;
+}
+
+
+body {
+    background: #eeeeee;
+}
+
+div#footer-fixed
+{
+    position: fixed;            /* フッターの固定 */
+    bottom: 0px;                /* 位置(下0px) */
+    left: 0px;                  /* 位置(左0px) */
+    width: 100%;                /* 横幅100%　*/
+    height: 55px;              /* 縦幅140px */
+}
+
+div#footer-bk
+{
+    background-color:#444;     /* 背景色(黒) */
+    padding:10px 0 20px;       /* 上10px、下20pxをあける */
+    height:30px;              /* 縦の高さ140px */
+    width:100%;                /* 横の幅を100% */
+}
+
+div#footer { 
+    border: 2px solid #fff;    /* 表示領域を白枠で囲う */
+    height: 100%;              /* 縦の表示領域はheader-bkと同じ */
+    width: 97%;              /* 横の幅970px */
+    margin: auto;              /* 中央揃え */
+}
+div#body-bk{
+    padding:100px 0 160px 0;    /* 上下に160pxを余白を取る */
+}
+
+div#body{
+    width:960px;
+}
