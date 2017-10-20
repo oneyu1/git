@@ -9,6 +9,15 @@ require_once '../util/common.php';
  * and open the template in the editor.
  */
 
+function nomalLOGINOUT() {
+    if (empty($_COOKIE['Loginstate'])) {
+        ?> <a href=login.php>ログイン</a> <?php
+    } else {
+        ?> <a href=login.php>ログアウト</a> <?php
+    }
+    //ログインステートfalseの時に表示、trueの時ログアウト、買い物かご、ようこそ $nameさんを表示
+}
+
 function LOGINOUT() {
     if (empty($_COOKIE['Loginstate'])) {
         ?> <a href=login.php style="color:#ffffff;text-decoration:none">ログイン</a> <?php
