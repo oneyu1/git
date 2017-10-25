@@ -32,10 +32,10 @@ and open the template in the editor.
         <div id = "body-bk">
             <div id = "body">
                 <?php
-                echo "このサービスは、そんなフラストレーションを解消するために生まれた、<br>
+                echo "このサービスは<br>
 
-                『金銭取引が絶対に発生しない』<br>
-                『いくらでも、どんなものでも購入できる(気分になれる)』<br>
+                『<strong>金銭取引が絶対に発生しない</strong>』<br>
+                『いくらでも、どんなものでも<strong>購入できる(気分になれる)</strong>』<br>
                 『ECサイト』<br>
 
                 です。<br>";
