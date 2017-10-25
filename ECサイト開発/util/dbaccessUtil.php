@@ -3,10 +3,8 @@
 //SQL接続するメソッド
 function connect2MySQL() {
     try {
-        //Xdomainサーバにあるホスト、ユーザ、パスは別です。
-        //ローカル環境のパス
-        //$pdo = new PDO('mysql:dbname=kagoyume_db;host=localhost', 'isshiki', 'rel8Asd');
-        $pdo = new PDO('mysql:dbname=ymytest_kagoyume;host=mysql1.php.xdomain.ne.jp', 'ymytest_isshiki', 'rel8Asd1');
+        //Xdomainサーバパス。
+        $pdo = new PDO('mysql:dbname=ymytest_kagoyume;host=mysql1.php.xdomain.ne.jp', 'ymytest_geekjob', 'tghk19sjAjskdm');
         //SQL実行時のエラーをtry-catchで取得できるように設定
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;

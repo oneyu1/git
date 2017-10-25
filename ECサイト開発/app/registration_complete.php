@@ -16,7 +16,6 @@
                 <div id="header"><?php kagoyume(); ?></div>
                 <div id="header-util">
                     <?php
-                    
                     //カートへ飛ぶ関数。購入もここから行う。
                     mydata();
                     echo cart();
@@ -39,14 +38,14 @@
                     $pass = $_SESSION['pass'];
                     $mail = $_SESSION['mail'];
                     $address = $_SESSION['address'];
-                    
+
                     $_SESSION['name'] = null;
                     $_SESSION['pass'] = null;
                     $_SESSION['mail'] = null;
                     $_SESSION['address'] = null;
-                    
+
                     $result = insert($name, $pass, $mail, $address);
-                    
+
 
                     if (!isset($result)) {
                         ?>
@@ -59,10 +58,10 @@
 
                         <h1><a href="<?php echo TOP_PHP ?>" >トップに戻る</a></h1>
                         <?php
-
                     } else {
-
+                        echo "登録名が重複しているか、未確認のエラーです。";
                     }
+
                     $_SESSION['name'] = null;
                     $_SESSION['pass'] = null;
                     $_SESSION['mail'] = null;
