@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>登録完了画面</title>
         <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     </head>
     <body>
@@ -18,11 +18,7 @@
                     <?php
                     
                     //カートへ飛ぶ関数。購入もここから行う。
-                    if (isset($_SESSION['name'])) {
-                        ?><a href=../app/my_data.php style="color:#ffffff;text-decoration:none">マイデータ</a><?php
-                    }
-
-                    //カートへ飛ぶ関数。購入もここから行う。
+                    mydata();
                     echo cart();
                     //ログインの時はログアウト、ログアウト時はログイン表示させる関数。ログイン処理、ログアウト処理自体は飛んだあとに行う。
                     echo LOGINOUT();
@@ -43,8 +39,14 @@
                     $pass = $_SESSION['pass'];
                     $mail = $_SESSION['mail'];
                     $address = $_SESSION['address'];
-
+                    
+                    $_SESSION['name'] = null;
+                    $_SESSION['pass'] = null;
+                    $_SESSION['mail'] = null;
+                    $_SESSION['address'] = null;
+                    
                     $result = insert($name, $pass, $mail, $address);
+                    
 
                     if (!isset($result)) {
                         ?>
@@ -57,13 +59,14 @@
 
                         <h1><a href="<?php echo TOP_PHP ?>" >トップに戻る</a></h1>
                         <?php
-                        $_SESSION['name'] = null;
-                        $_SESSION['pass'] = null;
-                        $_SESSION['mail'] = null;
-                        $_SESSION['address'] = null;
+
                     } else {
-                        
+
                     }
+                    $_SESSION['name'] = null;
+                    $_SESSION['pass'] = null;
+                    $_SESSION['mail'] = null;
+                    $_SESSION['address'] = null;
                 }
 //insert()
 
@@ -75,7 +78,6 @@
                  * To change this template file, choose Tools | Templates
                  * and open the template in the editor.
                  */
-                top();
                 ?>
             </div>
         </div>

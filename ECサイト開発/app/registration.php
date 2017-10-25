@@ -1,12 +1,13 @@
 <?php require_once '../util/defineUtil.php'; ?>
 <?php require_once '../util/dbaccessUtil.php'; ?>
 <?php require_once '../util/scriptUtil.php'; ?>
+<?php ini_set("allow_url_fopen",1); ?>
 <?php session_start(); ?>
 
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>ユーザ登録画面</title>
         <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     </head>
     <body>
@@ -18,10 +19,7 @@
                     <?php
                     
                     //カートへ飛ぶ関数。購入もここから行う。
-                    if (isset($_SESSION['name'])) {
-                        ?><a href=../app/my_data.php style="color:#ffffff;text-decoration:none">マイデータ</a><?php
-                    }
-
+                    mydata();
                     //カートへ飛ぶ関数。購入もここから行う。
                     echo cart();
                     //ログインの時はログアウト、ログアウト時はログイン表示させる関数。ログイン処理、ログアウト処理自体は飛んだあとに行う。
@@ -42,6 +40,9 @@
                     address:<input type ="text" name="address" value="<?php echo form_value('addless'); ?>"><br>
                     <input type="submit" name="送信">
                 </form>
+                
+                
+                ※メールアドレス等は架空のもので問題ありません<br>
                 <?php
 //デリートフラグ実装する必要アリ？　デフォルト値でいい？
                 /*

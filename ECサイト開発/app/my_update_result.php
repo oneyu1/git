@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>ユーザ情報変更確認画面</title>
         <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     </head>
     <body>
@@ -18,9 +18,7 @@
                     <?php
                     
                     //カートへ飛ぶ関数。購入もここから行う。
-                    if (isset($_SESSION['name'])) {
-                        ?><a href=../app/my_data.php style="color:#ffffff;text-decoration:none">マイデータ</a><?php
-                    }
+                    mydata();
 
                     //カートへ飛ぶ関数。購入もここから行う。
                     echo cart();

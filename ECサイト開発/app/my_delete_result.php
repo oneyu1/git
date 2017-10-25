@@ -1,12 +1,17 @@
 <?php require_once '../util/defineUtil.php'; ?>
 <?php require_once '../util/dbaccessUtil.php'; ?>
 <?php require_once '../util/scriptUtil.php'; ?>
-<?php session_start(); ?>
+<?php ini_set("allow_url_fopen", 1); ?>
+<?php
+session_start();
+setcookie('Loginstate', "", time() - 4500);
+session_destroy();
+?>
 
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>ユーザ削除確認画面</title>
         <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     </head>
     <body>
@@ -16,12 +21,8 @@
                 <div id="header"><?php kagoyume(); ?></div>
                 <div id="header-util">
                     <?php
-                    
                     //カートへ飛ぶ関数。購入もここから行う。
-                    if (isset($_SESSION['name'])) {
-                        ?><a href=../app/my_data.php style="color:#ffffff;text-decoration:none">マイデータ</a><?php
-                    }
-
+                    mydata();
                     //カートへ飛ぶ関数。購入もここから行う。
                     echo cart();
                     //ログインの時はログアウト、ログアウト時はログイン表示させる関数。ログイン処理、ログアウト処理自体は飛んだあとに行う。
@@ -38,8 +39,7 @@
 //現在接続中のIDのdeleteFlgを1にする。
                 deletedb();
                 echo "削除しました";
-                setcookie('Loginstate', "", time() - 4500);
-                session_destroy();
+
                 top();
                 /* ここにアクセスした段階で、IDによる削除が実行される(外部キー制約により直接DELETEは出来ないので、削除フラグを0から1に変更する)
                   「削除しました」という一文が表示される
@@ -47,7 +47,6 @@
                  * To change this template file, choose Tools | Templates
                  * and open the template in the editor.
                  */
-                top();
                 ?>
             </div>
         </div>

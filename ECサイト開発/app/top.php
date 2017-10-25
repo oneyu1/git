@@ -1,6 +1,7 @@
 <?php require_once '../util/defineUtil.php'; ?>
 <?php require_once '../util/dbaccessUtil.php'; ?>
 <?php require_once '../util/scriptUtil.php'; ?>
+<?php session_start();?>
 
 <!DOCTYPE html>
 <!--
@@ -11,23 +12,17 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>かごゆめ</title>
         <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     </head>
     <body>
-        <?php
-        session_start();
-        ?>
         <div id="header-fixed">
             <div id="header-bk">
                 <div id="header"><?php kagoyume(); ?></div>
                 <div id="header-util">
                     <?php
-                    //カートへ飛ぶ関数。購入もここから行う。
-                    if (isset($_SESSION['name'])) {
-                        ?><a href=../app/my_data.php style="color:#ffffff;text-decoration:none">マイデータ</a><?php
-                    }
-                    echo cart();
+                    mydata();
+                    cart();
                     //ログインの時はログアウト、ログアウト時はログイン表示させる関数。ログイン処理、ログアウト処理自体は飛んだあとに行う。
                     echo LOGINOUT();
                     ?>
@@ -39,13 +34,14 @@ and open the template in the editor.
                 <?php
                 echo "このサービスは、そんなフラストレーションを解消するために生まれた、<br>
 
-『金銭取引が絶対に発生しない』<br>
-『いくらでも、どんなものでも購入できる(気分になれる)』<br>
-『ECサイト』<br>
+                『金銭取引が絶対に発生しない』<br>
+                『いくらでも、どんなものでも購入できる(気分になれる)』<br>
+                『ECサイト』<br>
 
-です。<br>";
+                です。<br>";
 
                 echo "スキル確認用のデモとして作成されています。<br>";
+                echo "長期更新がない場合広告が入ります。ご了承下さい。<br>";
                 ?>
 
                 <?php

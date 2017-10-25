@@ -1,12 +1,13 @@
 <?php require_once '../util/defineUtil.php'; ?>
 <?php require_once '../util/dbaccessUtil.php'; ?>
 <?php require_once '../util/scriptUtil.php'; ?>
+<?php ini_set("allow_url_fopen",1); ?>
 <?php session_start(); ?>
 
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>ユーザデータ</title>
         <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     </head>
     <body>
@@ -18,9 +19,7 @@
                     <?php
                     
                     //カートへ飛ぶ関数。購入もここから行う。
-                    if (isset($_SESSION['name'])) {
-                        ?><a href=../app/my_data.php style="color:#ffffff;text-decoration:none">マイデータ</a><?php
-                    }
+                    mydata();
 
                     //カートへ飛ぶ関数。購入もここから行う。
                     echo cart();

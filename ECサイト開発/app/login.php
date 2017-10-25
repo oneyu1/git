@@ -6,16 +6,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>ログイン</title>
         <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     </head>
-    <body>
 
-        <div id="header-fixed">
-            <div id="header-bk">
-                <div id="header"><?php kagoyume(); ?></div>
-            </div>
-        </div>
+
     <body>
         <div id = "body-bk">
             <div id = "body">
@@ -36,21 +31,24 @@
                             echo "名前が存在しないかパスワードが間違っています";
                         } else {
                             //セッションIDを現在のものと置き換え、ログイン。それまで保持していたセッションはキープする。
-                            $sessionID = session_regenerate_id();
+                            //
+                            //下記、Xdomain環境で動かない為、オミット
+                            //$sessionID = session_regenerate_id(true);
+                           
                             foreach ($login_profile as $key) {
                                 if ($key["deleteFlg"] == 0) {
                                     //デリートフラグが立っていないアカウントであった場合
                                     //セッションにIDと名前を保存しクッキーをスタート。
-                                    echo "ログインしました。ようこそ";
                                     $_SESSION['userID'] = $key['userID'];
-                                    echo $_SESSION['name'] = $key['name'];
-                                    echo "さん<br>";
-                                    //Scocckieをスタートさせる。
-                                    setcookie('Loginstate', true, time() + 3000);
-                                    setcookie($sessionID, time() + 3000);
+                                    $_SESSION['name'] = $key['name'];
+
+                                    ?>
+                                    　<meta http-equiv="refresh"content="0; URL=login_setcookie.php">
+                                     <?php
                                 } elseif ($key["deleteFlg"] == 1) {
                                     //デリートフラグが1で削除されているアカウントの場合
                                     echo"削除されたuserIDです";
+                                    break;
                                 }
                             }
                         }
@@ -75,11 +73,16 @@
                     //ログインしたときにこのページに戻すので戻れるように。
                 } else {
                     //ログアウト処理。クッキーとセッションを破棄する。
+                    ?>
+                    <meta http-equiv="refresh"content="0; URL=logout.php">
+                    <?php
+                    /*  飛ばし先ログアウト処理
                     echo "ログアウトしました<br>";
                     setcookie('Loginstate', "", time() - 4500);
                     session_destroy();
                     top();
                     logindec();
+                    */
                 }
 
                 /*
@@ -93,5 +96,10 @@
                  * and open the template in the editor.
                  */
                 ?>
+                <div id="header-fixed">
+                    <div id="header-bk">
+                        <div id="header"><?php kagoyume(); ?></div>
+                    </div>
+                </div>
             </div>
         </div>

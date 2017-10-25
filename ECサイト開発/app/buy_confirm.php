@@ -2,12 +2,13 @@
 <?php require_once '../util/dbaccessUtil.php'; ?>
 <?php require_once '../util/scriptUtil.php'; ?>
 <?php require_once '../util/common.php'; ?>
+<?php ini_set("allow_url_fopen", 1); ?>
 <?php session_start(); ?>
 
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>購入確認</title>
         <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     </head>
     <body>
@@ -17,11 +18,8 @@
                 <div id="header"><?php kagoyume(); ?></div>
                 <div id="header-util">
                     <?php
-                    
                     //カートへ飛ぶ関数。購入もここから行う。
-                    if (isset($_SESSION['name'])) {
-                        ?><a href=../app/my_data.php style="color:#ffffff;text-decoration:none">マイデータ</a><?php
-                    }
+                    mydata();
 
                     //カートへ飛ぶ関数。購入もここから行う。
                     echo cart();
@@ -34,23 +32,34 @@
     <body>
         <div id = "body-bk">
             <div id = "body">
+
                 <?php
                 $item = array();
 
                 if (isset($_COOKIE['Loginstate']) && isset($_SESSION['i'])) {
-                    //sessionroop()は$_SESSION['i']に格納されているカートのアイテム数分、アイテムを表示させる関数
-                    //returnでアイテムの価格を合算した総合計$totalを返す。
-                    $total = sessionroop($_SESSION['i']);
+                    ?>
+                    <table border = "1">
+                        <tr>
+                            <th>商品名</th>
+                            <th>金額</th>
+                        </tr>
+                        <?php
+                        //sessionroop()は$_SESSION['i']に格納されているカートのアイテム数分、アイテムを表示させる関数
+                        //returnでアイテムの価格を合算した総合計$totalを返す。
+                        $total = sessionroop($_SESSION['i']);
+                        ?>
+                    </table>
+                    <?php
                     if (isset($total)) {
                         echo "<br> 合計" . $total . "円<br>";
-                        echo "<br>以上の内容で購入します";
+                        echo "<br>以上の内容で購入します<br>";
 
                         echo "<br>発送方法<br>";
                         ?>
-                        <form action="buy_complete.php" method="POST">
-                            郵便:<input type="radio" name="radio" value="1" checked><br>
-                            徒歩:<input type="radio" name="radio" value="2"><br>
-                            <input type="submit" value="送信"><br>
+                        <form action = "buy_complete.php" method = "POST">
+                            郵便:<input type = "radio" name = "radio" value = "1" checked><br>
+                            徒歩:<input type = "radio" name = "radio" value = "2"><br>
+                            <input type = "submit" value = "送信"><br>
                         </form>
                         <?php
                     } else {

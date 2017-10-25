@@ -3,7 +3,10 @@
 //SQL接続するメソッド
 function connect2MySQL() {
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=kagoyume_db;charset=utf8', 'isshiki', 'rel8Asd');
+        //Xdomainサーバにあるホスト、ユーザ、パスは別です。
+        //ローカル環境のパス
+        //$pdo = new PDO('mysql:dbname=kagoyume_db;host=localhost', 'isshiki', 'rel8Asd');
+        $pdo = new PDO('mysql:dbname=ymytest_kagoyume;host=mysql1.php.xdomain.ne.jp', 'ymytest_isshiki', 'rel8Asd1');
         //SQL実行時のエラーをtry-catchで取得できるように設定
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
@@ -15,7 +18,6 @@ function connect2MySQL() {
 //mysqlより入力されたユーザネームとパスワードを照合しログインする関数
 function login($name, $password) {
     $login_db = connect2MySQL();
-
 
     $login_sql = "SELECT userID,name,deleteFlg FROM user_t WHERE name = :name AND password = :password";
 

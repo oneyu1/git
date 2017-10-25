@@ -2,12 +2,13 @@
 <?php require_once '../util/dbaccessUtil.php'; ?>
 <?php require_once '../util/scriptUtil.php'; ?>
 <?php require_once '../util/common.php'; ?>
+<?php ini_set("allow_url_fopen", 1); ?>
 <?php session_start(); ?>
 
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>購入履歴</title>
         <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     </head>
     <body>
@@ -17,11 +18,8 @@
                 <div id="header"><?php kagoyume(); ?></div>
                 <div id="header-util">
                     <?php
-                    
                     //カートへ飛ぶ関数。購入もここから行う。
-                    if (isset($_SESSION['name'])) {
-                        ?><a href=../app/my_data.php style="color:#ffffff;text-decoration:none">マイデータ</a><?php
-                    }
+                    mydata();
 
                     //カートへ飛ぶ関数。購入もここから行う。
                     echo cart();
@@ -34,24 +32,34 @@
     <body>
         <div id = "body-bk">
             <div id = "body">
-                <?php
-                echo $_SESSION["userID"];
+                <table border ="1">
+                    <tr>
+                        <th>商品名</th>
+                        <th>配送方法</th>
+                        <th>購入日時</th>
+                    </tr>
+
+                    <?php
+                    $_SESSION["userID"];
 //購入履歴をデータベースより取得。各種データを表示。
-                $result = buyhistory();
-                if (isset($result)) {
-                    foreach ($result as $value => $key) {
-                        $itemCode = $key["itemCode"];
-                        //itemcodeよりアイテム名を参照して表示
-                        itemcode_select($key["itemCode"]);
-                        echo "配送方法:";
-                        if ($key["type"] == 1) {
-                            echo "郵便" . "<br>";
-                        } elseif ($key["type"] == 2) {
-                            echo "徒歩" . "<br>";
+                    $result = buyhistory();
+                    if (isset($result)) {
+                        foreach ($result as $value => $key) {
+                            ?><tr><?php
+                                $itemCode = $key["itemCode"];
+                                //itemcodeよりアイテム名を参照して表示
+                                itemcode_select($key["itemCode"]);
+                                if ($key["type"] == 1) {
+                                    ?><td> 郵便 </td><?php
+                                } elseif ($key["type"] == 2) {
+                                    ?><td> 徒歩 </td><?php
+                                }
+                                ?><td><?php echo $key["buyDate"]; ?></td>
+                            </tr><?php
                         }
-                        echo "購入日時" . $key["buyDate"] . "<br><br>";
                     }
-                }
+                    ?></table>
+                <?php
                 logindec();
                 /* これまで購入した商品の履歴が見れる
                  * To change this license header, choose License Headers in Project Properties.
