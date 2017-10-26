@@ -54,7 +54,7 @@
                         }
                     }
                     //ログインしていない場合、このifを通す。nameとpassを入力しログインする。データベースに存在する場合、ログイン。
-                    if (empty($_SESSION['userID'])) {
+
                         ?>
                         <form action="login.php" method="post">
                             ユーザー名:<input type="text" name="name"><br>
@@ -64,7 +64,6 @@
                         </form>
                         <a href = "<?php echo REGISTRATION ?>">新規登録</a>
                         <?php
-                    }
                     ?>
 
                     <?php

@@ -169,7 +169,8 @@ function update_user($name, $pass, $mail, $address) {
         $insert_query->execute();
     } catch (PDOException $e) {
         $insert_db = null;
-        return $e->getMessage();
+        echo $e->getMessage();
+        return ;
     }
     $insert_db = null;
     return null;
