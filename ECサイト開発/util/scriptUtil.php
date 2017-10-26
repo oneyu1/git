@@ -110,8 +110,8 @@ function itemserch($i) {
     $item = $xml->Result->Hit; //メソッド化？
     ?><tr>
 
-    <td><?php echo $_SESSION['Name'][$i];?></td>
-    <td><?php echo $_SESSION['Price'][$i] . "円";?></td>
+        <td><?php echo $_SESSION['Name'][$i]; ?></td>
+        <td><?php echo $_SESSION['Price'][$i] . "円"; ?></td>
     </tr>
     <?php
 }
@@ -147,4 +147,77 @@ function curl($rss) {
     $data = curl_exec($cp);
     curl_close($cp);
     return $data;
+}
+
+function item_foreach($hits) {
+    foreach ($hits as $hit) {
+        //urlの飛ばし先をitemへ。商品IDをGETで渡す。   
+        ?>
+        <tr>
+            <td><a class ="img" href="<?php echo "item.php" . "?itemcode=" . h($hit->Code); ?>"> <img src="<?php echo h($hit->Image->Medium); ?>"/></a></td>
+            <td><a class ="title" href="<?php echo "item.php" . "?itemcode=" . h($hit->Code); ?>"><?php echo h($hit->Name); ?></a></td>
+            <td><?php echo h($hit->Price) . "円"; ?></td>
+        </tr>
+        <?php
+    }
+}
+
+function item_reqest($query, $appid) {
+    if ($query != "") {
+        $sort = "-score";
+        $category_id = 1;
+        //rawurlencode　unicode等で書かれた文字列をURLで読み取れる値にエンコード
+        $query4url = rawurlencode($query);
+        $sort4url = rawurlencode($sort);
+        //appid=アプリケーショーンID query=検索内容
+        $rss = "http://shopping.yahooapis.jp/ShoppingWebService/V1/itemSearch?appid=$appid&query=$query4url&category_id=$category_id&sort=$sort4url&hits=10";
+
+        $data = curl($rss);
+
+        try {
+            $xml = simplexml_load_string($data);
+        } catch (Exception $e) {
+            
+        }
+
+        if ($xml["totalResultsReturned"] != 0) {
+            return $xml->Result->Hit;
+        }
+    }
+}
+
+function parsonal_null() {
+    $_SESSION['name'] = null;
+    $_SESSION['pass'] = null;
+    $_SESSION['mail'] = null;
+    $_SESSION['address'] = null;
+}
+
+function item_add_get($appid) {
+    $itemcode = $_GET['itemcode'];
+    $rss = "https://shopping.yahooapis.jp/ShoppingWebService/V1/itemLookup?appid=$appid&itemcode=$itemcode";
+    $data = curl($rss);
+    $xml = simplexml_load_string($data);
+    //Result/Hit　検索された結果。アロー演算子を用いる。
+    $item = $xml->Result->Hit;
+    //保存するのはitemcode、表示するのはitemcodeを利用した商品名
+    //配列iにしてセッションに保存。
+
+    if (!isset($_SESSION['i'])) {
+        $_SESSION['i'] = 1;
+    } else {
+        $_SESSION['i'] = ++$_SESSION['i'];
+    }
+
+    $i = $_SESSION['i'];
+
+    $_SESSION['cart'][$i] = $_GET["itemcode"];
+    foreach ($item as $key) {
+        ?>
+        <td><p><img src="<?php echo h($key->Image->Small); ?>"/></p></td>
+        <td><?php echo $_SESSION['Name'][$i] = h($key->Name); ?></td>
+        <td><?php echo $_SESSION['Price'][$i] = h($key->Price); ?>円</td>
+
+        <?php
+    }
 }

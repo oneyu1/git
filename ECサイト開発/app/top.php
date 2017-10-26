@@ -1,7 +1,7 @@
 <?php require_once '../util/defineUtil.php'; ?>
 <?php require_once '../util/dbaccessUtil.php'; ?>
 <?php require_once '../util/scriptUtil.php'; ?>
-<?php session_start();?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <!--
@@ -23,7 +23,6 @@ and open the template in the editor.
                     <?php
                     mydata();
                     cart();
-                    //ログインの時はログアウト、ログアウト時はログイン表示させる関数。ログイン処理、ログアウト処理自体は飛んだあとに行う。
                     echo LOGINOUT();
                     ?>
                 </div>
@@ -53,14 +52,6 @@ and open the template in the editor.
 
                 </form>
                 <?php
-//$_SESSIONにnameが格納されている場合(ログインしている場合)マイデータを表示させる。
-
-
-                /* このシステムの簡単な説明が記載されている。テキストは自由
-                  キーワード検索フォームが設置されている。検索の遷移先はsearchで、GETメソッド。未入力ならエラーを表示
-                 * フォームの再送信が必要なページは設定が必要
-                 * 
-                 */
                 ?>
             </div>
         </div>

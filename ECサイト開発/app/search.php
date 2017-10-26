@@ -28,7 +28,7 @@
         </div>
         <div id = "body-bk">
             <?php
-//$_get['query']に値がない場合、未入力であることを表示。ログインのページ
+            //$_get['query']=検索文字列 
             if (empty($_GET['query'])) {
                 ?>
                 <form action = "<?php SEARCH ?>" class = "Search">
@@ -40,32 +40,10 @@
             } else {
                 //検索件数が0件でない場合,変数$hitsに検索結果を格納します。
                 //あらかじめ配列で宣言
-                $hits = array();
-                //
                 $query = !empty($_GET["query"]) ? $_GET["query"] : ""; //queryに格納
-                $sort = "-score";
-                $category_id = 1;
-
-                if ($query != "") {
-                    //rawurlencode　unicode等で書かれた文字列をURLで読み取れる値にエンコード
-                    $query4url = rawurlencode($query);
-                    $sort4url = rawurlencode($sort);
-                    //appid=アプリケーショーンID query=検索内容
 
 
-                    $rss = "http://shopping.yahooapis.jp/ShoppingWebService/V1/itemSearch?appid=$appid&query=$query4url&category_id=$category_id&sort=$sort4url&hits=10";
-
-                    $data = curl($rss);
-
-                    try {
-                        $xml = simplexml_load_string($data);
-                    } catch (Exception $e) {
-                        
-                    }
-                    if ($xml["totalResultsReturned"] != 0) {//検索件数が0件でない場合,変数$hitsに検索結果を格納します。
-                        $hits = $xml->Result->Hit;
-                    }
-                }
+                $hits = item_reqest($query, $appid);
                 ?>
                 <form action="<?php SEARCH ?>" class="Search">
                     <input type="text" name="query" value="<?php echo h($query); ?>"/>
@@ -79,17 +57,9 @@
                     </tr>
 
                     <?php
-                    foreach ($hits as $hit) {
-                        ?>
-                        <?php //urlの飛ばし先をitemへ。商品IDをGETで渡す。  ?>
-                        <tr>
-                            <td><a class ="img" href="<?php echo "item.php" . "?itemcode=" . h($hit->Code); ?>"> <img src="<?php echo h($hit->Image->Medium); ?>"/></a></td>
-                            <td><a class ="title" href="<?php echo "item.php" . "?itemcode=" . h($hit->Code); ?>"><?php echo h($hit->Name); ?></a></td>
-                            <td><?php echo h($hit->Price) . "円"; ?></td>
-                        </tr>
-                        <?php
-                    }
+                    item_foreach($hits);
                     ?>
+
                 </table>
                 <?php
                 /*

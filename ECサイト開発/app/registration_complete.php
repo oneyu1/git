@@ -33,19 +33,15 @@
                     echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
                     top();
                 } else {
-
+                    //一旦sessionで受け取り、nullで帳消し。スマートではない。
                     $name = $_SESSION['name'];
                     $pass = $_SESSION['pass'];
                     $mail = $_SESSION['mail'];
                     $address = $_SESSION['address'];
 
-                    $_SESSION['name'] = null;
-                    $_SESSION['pass'] = null;
-                    $_SESSION['mail'] = null;
-                    $_SESSION['address'] = null;
+                    parsonal_null();
 
                     $result = insert($name, $pass, $mail, $address);
-
 
                     if (!isset($result)) {
                         ?>
@@ -61,22 +57,9 @@
                     } else {
                         echo "登録名が重複しているか、未確認のエラーです。";
                     }
-
-                    $_SESSION['name'] = null;
-                    $_SESSION['pass'] = null;
-                    $_SESSION['mail'] = null;
-                    $_SESSION['address'] = null;
+                    //一旦sessionで受け取り、nullで帳消し。スマートではない。
+                    parsonal_null();
                 }
-//insert()
-
-                /*
-                 * プロフィール用のDBに値を挿入。この際、現在時(年日時分)を組み込み関数で取得し、追加。
-                  「以上の内容で登録しました。」とregistration_confirmのようにフォームで入力された値を表示
-                  「トップページへ戻る」のリンクが、目立つ場所に設置されている
-                 * To change this license header, choose License Headers in Project Properties.
-                 * To change this template file, choose Tools | Templates
-                 * and open the template in the editor.
-                 */
                 ?>
             </div>
         </div>
