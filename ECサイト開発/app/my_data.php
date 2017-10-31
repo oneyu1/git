@@ -34,7 +34,7 @@
             <div id = "body">
                 <?php
                 $result = outputuser();
-//var_dump($result);
+                //var_dump($result);
                 if (isset($result)) {
                     foreach ($result as $value => $key) {
                         //データベースより取得したデータの表示。

@@ -49,7 +49,6 @@
                     住所:<?php echo $confirm_values['address']; ?><br>
 
                     上記の内容で登録します。よろしいですか？
-
                     <form action="<?php echo REGISTRATION_COMPLETE ?>" method="POST">
                         <input type="hidden" name="mode" value="RESULT">
                         <input type="submit" name="yes" value="はい">

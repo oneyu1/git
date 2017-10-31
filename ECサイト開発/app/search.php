@@ -42,7 +42,6 @@
                 //あらかじめ配列で宣言
                 $query = !empty($_GET["query"]) ? $_GET["query"] : ""; //queryに格納
 
-
                 $hits = item_reqest($query, $appid);
                 ?>
                 <form action="<?php SEARCH ?>" class="Search">

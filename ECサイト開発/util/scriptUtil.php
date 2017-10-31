@@ -99,22 +99,7 @@ function sessionroop($SNo) {
     return $total;
 }
 
-//SESSIONに格納されている['cart']['i']配列を取り出す。
-function itemserch($i) {
-    $itemcode = $_SESSION['cart'][$i];
-    echo " ";
-    $appid = "dj00aiZpPXNudVQ4eEtLUlZmUCZzPWNvbnN1bWVyc2VjcmV0Jng9ZjQ-";
-    $rss = "https://shopping.yahooapis.jp/ShoppingWebService/V1/itemLookup?appid=$appid&itemcode=$itemcode";
-    $data = curl($rss);
-    $xml = simplexml_load_string($data);
-    $item = $xml->Result->Hit; //メソッド化？
-    ?><tr>
 
-        <td><?php echo $_SESSION['Name'][$i]; ?></td>
-        <td><?php echo $_SESSION['Price'][$i] . "円"; ?></td>
-    </tr>
-    <?php
-}
 
 function itemcode_select($itemcode) {
     $appid = "dj00aiZpPXNudVQ4eEtLUlZmUCZzPWNvbnN1bWVyc2VjcmV0Jng9ZjQ-";
@@ -179,7 +164,6 @@ function item_reqest($query, $appid) {
         } catch (Exception $e) {
             
         }
-
         if ($xml["totalResultsReturned"] != 0) {
             return $xml->Result->Hit;
         }
