@@ -42,9 +42,6 @@ and open the template in the editor.
                 echo "スキル確認用のデモとして作成されています。<br>";
                 echo "スマートフォンもしくはタブレットからのアクセスだと広告が入ります。ご了承下さい。<br>";
                 ?>
-
-                <?php
-                ?>
                 <form action ="<?php echo SEARCH ?>" method="GET">
                     商品検索:<input type="text" name="query">
                     <input hidden="text" name="category_id" value="1">
@@ -55,7 +52,9 @@ and open the template in the editor.
                 ?>
             </div>
         </div>
-
+        <footer>
+            <a href="https://github.com/oneyu1/git/tree/master/EC%E3%82%B5%E3%82%A4%E3%83%88%E9%96%8B%E7%99%BA">github</a>
+        </footer>
     </body>
 
 </div>
